@@ -1,5 +1,4 @@
 import asyncio
-from math import hypot
 import discord
 import os
 from clogging import setup_logger
