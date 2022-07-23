@@ -1,3 +1,4 @@
 .env
 environtest.py
 __pycache__
+logs/

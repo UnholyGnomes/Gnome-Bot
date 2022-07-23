@@ -4,15 +4,17 @@ import discord
 import os
 from clogging import setup_logger
 from clogging import logpath
+from clogging import check_if_logger_exists
 from discord.ext import commands
 import math
 from dotenv import load_dotenv
 
 load_dotenv()
+check_if_logger_exists()
 
 prefix = os.getenv('PREFIX')
-intents = discord.Intents.all()
 logger = setup_logger('MAIN', logpath)
+intents = discord.Intents.all()
 bot = discord.Bot(command_prefix='!', intents=intents)
 client = discord.Client()
 
@@ -20,14 +22,15 @@ client = discord.Client()
 @bot.event
 async def on_ready():  # Is called when the bot is ready to use.
     logger.info(f"We have logged in as {bot.user}")
-    logger.info('bot is ready!')
+    logger.info('Bot is ready!')
     await bot.change_presence(activity=discord.Game(name='Being worked on... ;)'))
 
 # The old way of doing things, before slash commands were the new trend.
 
 
 @bot.event
-async def on_message(message): # Is called when a message is sent in a channel the bot is in.
+# Is called when a message is sent in a channel the bot is in.
+async def on_message(message):
     UserNAME = message.author.name
     NickNAME = message.author.nick
     if NickNAME:
