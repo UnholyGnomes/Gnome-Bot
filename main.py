@@ -38,7 +38,7 @@ async def randomstatus():
         logger.info(f'Setting status to "Playing Amogus? :amogusemoji:"')
         await bot.change_presence(activity=discord.Game(name="Amogus? ඞ"))
     if rng == 2:
-        logger.info(f'Setting status to "Streaming "Not actually streaming"')
+        logger.info(f'Setting status to "Streaming "Not actually streaming""')
         await bot.change_presence(activity=discord.Streaming(name="Not actually streaming", url="https://www.twitch.tv/twitch"))
     if rng == 3:
         logger.info(f'Setting status to "Listening to Godzilla!"')
