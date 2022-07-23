@@ -4,9 +4,10 @@ import os
 from clogging import setup_logger
 from clogging import logpath
 from clogging import check_if_logger_exists
-from discord.ext import commands
+from discord.ext import commands, tasks
 import math
 from dotenv import load_dotenv
+import random
 
 load_dotenv()
 check_if_logger_exists()
@@ -22,7 +23,22 @@ client = discord.Client()
 async def on_ready():  # Is called when the bot is ready to use.
     logger.info(f"We have logged in as {bot.user}")
     logger.info('Bot is ready!')
-    await bot.change_presence(activity=discord.Game(name='Being worked on... ;)'))
+    await bot.change_presence(activity=discord.Game(name='Starting up... ;)'))
+    randomstatus.start()
+
+
+@tasks.loop(seconds=30)
+async def randomstatus():
+    rng = random.randint(1, 4)
+    if rng == 1:
+        await bot.change_presence(activity=discord.Game(name="Amogus? ඞ"))
+    if rng == 2:
+        await bot.change_presence(activity=discord.Streaming(name="Not actually streaming", url="https://www.twitch.tv/twitch"))
+    if rng == 3:
+        await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name="Godzilla!"))
+    if rng == 4:
+        await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="Crazy things... ;)"))
+
 
 # The old way of doing things, before slash commands were the new trend.
 
@@ -135,6 +151,7 @@ async def pythagorean(ctx, x: float, y: float):
     logger.info(
         f"User {UserNAME} requested /pythagorean... {x}^2 + {y}^2 = {math.sqrt(hypotenuse)}^2")
     await ctx.respond(f"{x}^2 + {y}^2 = {math.sqrt(hypotenuse)}^2")
+
 
 # Gets the token from the environment variables.
 bot.run(os.environ.get('TOKEN'))
