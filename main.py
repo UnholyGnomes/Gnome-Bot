@@ -32,13 +32,19 @@ async def on_ready():  # Is called when the bot is ready to use.
 @tasks.loop(seconds=30)
 async def randomstatus():
     rng = random.randint(1, 4)
+    logger.info(f"Changing status...")
+    logger.info(f"Random status is {rng}")
     if rng == 1:
+        logger.info(f'Setting status to "Playing Amogus? :amogusemoji:!"')
         await bot.change_presence(activity=discord.Game(name="Amogus? ඞ"))
     if rng == 2:
+        logger.info(f'Setting status to "Streaming "Not actually streaming"')
         await bot.change_presence(activity=discord.Streaming(name="Not actually streaming", url="https://www.twitch.tv/twitch"))
     if rng == 3:
+        logger.info(f'Setting status to "Listening to Godzilla!"')
         await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name="Godzilla!"))
     if rng == 4:
+        logger.info(f'Setting status to "Watching https://github.com/UnholyGnomes/Gnome-Bot/"')
         await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="https://github.com/UnholyGnomes/Gnome-Bot/"))
 
 
