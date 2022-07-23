@@ -19,10 +19,6 @@ client = discord.Client()
 
 @bot.event
 async def on_ready():  # Is called when the bot is ready to use.
-    print('Logged in as')
-    print(bot.user.name)
-    print(bot.user.id)
-    print('------')
     logger.info(f"We have logged in as {bot.user}")
     logger.info('bot is ready!')
     await bot.change_presence(activity=discord.Game(name='Being worked on... ;)'))
