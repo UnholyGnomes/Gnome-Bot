@@ -35,7 +35,7 @@ async def randomstatus():
     logger.info(f"Changing status...")
     logger.info(f"Random status is {rng}")
     if rng == 1:
-        logger.info(f'Setting status to "Playing Amogus? :amogusemoji:!"')
+        logger.info(f'Setting status to "Playing Amogus? :amogusemoji:"')
         await bot.change_presence(activity=discord.Game(name="Amogus? ඞ"))
     if rng == 2:
         logger.info(f'Setting status to "Streaming "Not actually streaming"')
