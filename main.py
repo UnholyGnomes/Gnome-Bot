@@ -37,7 +37,7 @@ async def randomstatus():
     if rng == 3:
         await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name="Godzilla!"))
     if rng == 4:
-        await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="https://github/UnholyGnomes/Gnome-Bot"))
+        await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="https://github.com/UnholyGnomes/Gnome-Bot/"))
 
 
 # The old way of doing things, before slash commands were the new trend.
