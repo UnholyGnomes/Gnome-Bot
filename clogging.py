@@ -5,7 +5,7 @@ import os
 load_dotenv()
 
 logpath = os.getenv('LOGPATH')
-logdir = os.getenv('LOGPATH').replace('GnomeBot.log','')
+logdir = os.getenv('LOGPATH').replace(logpath.split('/')[-1], '')
 formatter = logging.Formatter('[%(asctime)s] {%(filename)s:%(lineno)d} %(levelname)s - %(message)s')
 
 def check_if_logger_exists():
