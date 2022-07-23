@@ -8,6 +8,8 @@ from discord.ext import commands, tasks
 import math
 from dotenv import load_dotenv
 import random
+import requests
+import json
 
 load_dotenv()
 check_if_logger_exists()
@@ -152,6 +154,20 @@ async def pythagorean(ctx, x: float, y: float):
         f"User {UserNAME} requested /pythagorean... {x}^2 + {y}^2 = {math.sqrt(hypotenuse)}^2")
     await ctx.respond(f"{x}^2 + {y}^2 = {math.sqrt(hypotenuse)}^2")
 
+
+@bot.slash_command(guild=os.getenv('GUILD_ID'), description='Gives a random quote!')
+async def get_quote(ctx):
+    UserNAME = ctx.user.name
+    NickNAME = ctx.user.nick
+    if ctx.user.nick:
+        UserNAME = NickNAME
+    url = 'https://zenquotes.io/api/random'
+    response = requests.get(url)
+    json_data = json.loads(response.text)
+    quote = json_data[0]['q'] + " -" + json_data[0]['a']
+    logger.info(
+        f"User {UserNAME} requested /quote, saying {quote} in channel {ctx.channel}")
+    await ctx.respond(quote)
 
 # Gets the token from the environment variables.
 bot.run(os.environ.get('TOKEN'))
