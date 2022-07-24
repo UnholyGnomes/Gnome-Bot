@@ -17,7 +17,7 @@ check_if_logger_exists()
 prefix = os.getenv('PREFIX')
 logger = setup_logger('MAIN', logpath)
 intents = discord.Intents.all()
-bot = discord.Bot(command_prefix='!', intents=intents)
+bot = discord.Bot(command_prefix=prefix, intents=intents)
 client = discord.Client()
 
 listofids = []
