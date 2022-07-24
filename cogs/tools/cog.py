@@ -1,9 +1,6 @@
 from discord.commands import slash_command
 from discord.ext import commands
-from clogging import logpath, setup_logger
-
-
-logger = setup_logger('Tools', logpath)
+from main import logger
 
 
 class Tools(commands.Cog, name="Tool commands"):

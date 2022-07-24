@@ -1,12 +1,8 @@
 from discord.commands import slash_command
 from discord.ext import commands
-from clogging import logpath, setup_logger
-from main import prefix
+from main import prefix, logger
 import requests
 import json
-
-
-logger = setup_logger('Misc', logpath)
 
 
 class Misc(commands.Cog, name="Misc commands"):
@@ -30,9 +26,6 @@ class Misc(commands.Cog, name="Misc commands"):
             await message.channel.send(f'👋 {UserNAME}')
 
         await bot.process_application_commands(message)
-
-    
-    
 
     # The new way of doing things, with slash commands. This is much cleaner to the user.
 

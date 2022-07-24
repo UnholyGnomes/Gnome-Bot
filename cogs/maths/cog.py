@@ -1,10 +1,7 @@
 from discord.commands import slash_command
 from discord.ext import commands
-from clogging import logpath, setup_logger
+from main import logger
 import math
-
-
-logger = setup_logger('Maths', logpath)
 
 
 class Maths(commands.Cog, name="Math commands"):

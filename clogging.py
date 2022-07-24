@@ -1,12 +1,15 @@
 import logging
 from dotenv import load_dotenv
 import os
+import datetime
 
 load_dotenv()
 
 logpath = os.getenv('LOGPATH')
 logdir = os.getenv('LOGPATH').replace(logpath.split('/')[-1], '')
-formatter = logging.Formatter('[%(asctime)s] {%(filename)s:%(lineno)d} %(levelname)s - %(message)s')
+formatter = logging.Formatter(
+    '[%(asctime)s] {%(filename)s:%(lineno)d} %(levelname)s - %(message)s')
+
 
 def check_if_logger_exists():
     if os.path.isfile(logpath):
@@ -24,14 +27,13 @@ def check_if_logger_exists():
             with open(logpath, 'w') as f:
                 f.write('Log created\n')
 
+
 def setup_logger(name, log_file, level=logging.INFO):
     """To setup as many loggers as you want"""
-
-    handler = logging.FileHandler(log_file)        
-    handler.setFormatter(formatter)
-
-    logger = logging.getLogger(name)
-    logger.setLevel(level)
-    logger.addHandler(handler)
-
+    logger = logging.getLogger(f'{name}')
+    if not len(logger.handlers):
+        logger.setLevel(level)
+        handler = logging.FileHandler(log_file)
+        handler.setFormatter(formatter)
+        logger.addHandler(handler)
     return logger
